@@ -7,17 +7,17 @@ Console.WriteLine("your name :");
 String name = Console.ReadLine();
 Console.WriteLine("Hello, " + name);
 
-Account account = new Account(1, "USD", 1000);
+Account account = new Account(1, "USD", 18374);
 
 Console.WriteLine(account.ToString());
 
 AccountService accountService = new AccountServiceImpl();
 accountService.AddNewAccount(account);
-accountService.AddNewAccount(new Account(2, "USD", 2000));
-accountService.AddNewAccount(new Account(3, "USD", 3000));
-accountService.AddNewAccount(new Account(4, "USD", 4000));
-accountService.AddNewAccount(new Account(5, "USD", 5000));
-accountService.AddNewAccount(new Account(6, "USD", 6000));
+accountService.AddNewAccount(new Account(2, "EUR", 2000));
+accountService.AddNewAccount(new Account(3, "MAD", 3276));
+accountService.AddNewAccount(new Account(4, "MAD", 87976));
+accountService.AddNewAccount(new Account(5, "USD", 62444));
+accountService.AddNewAccount(new Account(6, "USD", 56456));
 
 accountService.GetAllAccounts().ForEach(account => Console.WriteLine(account.ToString()));
 
