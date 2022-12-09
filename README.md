@@ -14,7 +14,7 @@ Dans cette partie nous allons implementer une application DotNet Core de type co
    - Tester l'application
    
  ## Création du projet
-     + dotnet new console -o FirstApp 
+     dotnet new console -o FirstApp 
  ![1](https://user-images.githubusercontent.com/52087288/206786169-f1486f07-6e40-48f8-beaa-242949c1e0bd.PNG)
 
 ## Structure du projet
