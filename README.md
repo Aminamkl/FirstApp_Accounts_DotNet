@@ -20,6 +20,120 @@ Dans cette partie nous allons implementer une application DotNet Core de type co
 ## Structure du projet
 ![image](https://user-images.githubusercontent.com/52087288/206785955-af633a87-5683-4a9a-a5a0-45800923193a.png)
 
+## La création des classes
++ Account
+  ```java
+  public class Account
+    {
+        public int id { get; set; }
+        public string? currency { get; set; }
+        public double balance { get; set; }
 
+        public Account(){}
+
+        public Account(int id, string currency, double balance)
+        {
+            this.id = id;
+            this.currency = currency;
+            this.balance = balance;
+        }
+
+        public override string ToString()
+        {
+            return JsonSerializer.Serialize(this);
+        }
+    }
+  ```
++ AccountService
+  ```java
+  public interface AccountService
+    {
+        Account GetAccountById(int id);
+        void AddNewAccount(Account account1);
+        List<Account> GetAllAccounts();
+        Account UpdateAccount(Account account1);
+        void DeleteAccount(int id);
+
+        List<Account> GetDebitedAccounts();
+        double balanceAVG();
+
+     
+    }
+  ```
++ AccountServiceImpl
+  ```java
+  class AccountServiceImpl : AccountService
+    {
+        private Dictionary<int,Account> accounts = new Dictionary<int, Account>() ;
+
+        public void DeleteAccount(int id)
+        {
+            Account account = GetAccount(id);
+            accounts.Remove(account.id);
+        }
+
+        public List<Account> GetAllAccounts()
+        {
+            return accounts.Values.ToList();
+        }
+
+        public Account GetAccount(int id)
+        {
+            //return accounts.Find(account => account.id == id);
+            return this.accounts[id];
+    
+        }
+
+        public Account UpdateAccount(Account account1)
+        {
+            Account account = GetAccount(account1.id);
+            account.balance = account1.balance;
+            account.currency = account1.currency;
+            return account;
+        }
+
+        public List<Account> GetDebitedAccounts()
+        {
+            return this.accounts.Values.Where(account => account.balance < 0).ToList();
+        }
+
+        public double balanceAVG()
+        {
+            return this.accounts.Values.Average(account => account.balance);
+        }
+
+        public Account GetAccountById(int id)
+        {
+            return accounts.Values.ToList().Find(account => account.id == id);
+        }
+
+        public void AddNewAccount(Account account1)
+        {
+            accounts.Add(account1.id,account1);
+        }
+    }
+  ```
+
+## Le test du programma
++ Main
+ ```java
+accountService.AddNewAccount(new Account(2, "USD", 2000));
+accountService.AddNewAccount(new Account(3, "USD", 3000));
+accountService.AddNewAccount(new Account(4, "USD", 4000));
+accountService.AddNewAccount(new Account(5, "USD", 5000));
+accountService.AddNewAccount(new Account(6, "USD", 6000));
+
+accountService.GetAllAccounts().ForEach(account => Console.WriteLine(account.ToString()));
+
+accountService.GetDebitedAccounts().ForEach(account => Console.WriteLine(account.ToString()));
+
+Console.WriteLine(accountService.balanceAVG());
+
+Console.WriteLine(accountService.GetAccountById(1).ToString());
+
+accountService.DeleteAccount(1);
+accountService.GetAllAccounts().ForEach(account => Console.WriteLine(account.ToString()));
+  ```
++ L'exécution
    
   
