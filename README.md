@@ -114,7 +114,7 @@ Dans cette partie nous allons implementer une application DotNet Core de type co
     }
   ```
 
-## Le test du programma
+## Le test du programme
 + Main
  ```java
 Console.WriteLine("Hello, World!");
@@ -146,6 +146,7 @@ accountService.DeleteAccount(1);
 accountService.GetAllAccounts().ForEach(account => Console.WriteLine(account.ToString()));
   ```
 + L'exécution
+
    ![image](https://user-images.githubusercontent.com/52087288/206788845-0162e208-eb86-400d-bf52-1c5439180bc4.png)
 
   
