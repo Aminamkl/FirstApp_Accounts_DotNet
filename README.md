@@ -117,12 +117,23 @@ Dans cette partie nous allons implementer une application DotNet Core de type co
 ## Le test du programma
 + Main
  ```java
-accountService.AddNewAccount(new Account(2, "USD", 2000));
-accountService.AddNewAccount(new Account(3, "USD", 3000));
-accountService.AddNewAccount(new Account(4, "USD", 4000));
-accountService.AddNewAccount(new Account(5, "USD", 5000));
-accountService.AddNewAccount(new Account(6, "USD", 6000));
+Console.WriteLine("Hello, World!");
+Console.WriteLine("Test Dot Net core!");
+Console.WriteLine("your name :");
+String name = Console.ReadLine();
+Console.WriteLine("Hello, " + name);
 
+Account account = new Account(1, "USD", 18374);
+
+Console.WriteLine(account.ToString());
+
+AccountService accountService = new AccountServiceImpl();
+accountService.AddNewAccount(account);
+accountService.AddNewAccount(new Account(2, "EUR", 2000));
+accountService.AddNewAccount(new Account(3, "MAD", 3276));
+accountService.AddNewAccount(new Account(4, "MAD", 87976));
+accountService.AddNewAccount(new Account(5, "USD", 62444));
+accountService.AddNewAccount(new Account(6, "USD", 56456));
 accountService.GetAllAccounts().ForEach(account => Console.WriteLine(account.ToString()));
 
 accountService.GetDebitedAccounts().ForEach(account => Console.WriteLine(account.ToString()));
@@ -135,5 +146,6 @@ accountService.DeleteAccount(1);
 accountService.GetAllAccounts().ForEach(account => Console.WriteLine(account.ToString()));
   ```
 + L'exécution
-   
+   ![image](https://user-images.githubusercontent.com/52087288/206788845-0162e208-eb86-400d-bf52-1c5439180bc4.png)
+
   
